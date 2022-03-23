@@ -15,17 +15,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dynastyproject2.bigboard2.dao.PlayerDAO;
 import com.dynastyproject2.bigboard2.model.Player;
 
+/**
+ * This is the Controller class.  It directs operations based
+ * on which access point is requested.
+ * 
+ *
+ */
 @Controller
 public class PlayerController {
 	
+	
+	/**
+	 * @playerDao is the local object created to perform the different 
+	 * MySQL queries.
+	 */
 	@Autowired
 	private PlayerDAO playerDao;
 	
+	/**
+	 * This method takes the user to the addplayer.jsp
+	 * @param model is the model view for all the players.  
+	 * @returns to the addplayer.jsp view, with the new
+	 * player added
+	 */
 	@GetMapping(value = "/addplayer")
 	public String newPlayer(ModelMap model) {
 		Player player = new Player();
@@ -33,9 +49,20 @@ public class PlayerController {
 		return "addplayer";
 	}	
 	
+	
+	/**
+	 * This is the method that saves the player to the database
+	 * @param player is the player to be added to the database
+	 * @param result is the raw data entered by the user.  If there are 
+	 * any errors, it redirects the user back to the addplayer.jsp. If 
+	 * there are no errors, it adds the new entry and redirects
+	 * to the viewplayers.jsp.
+	 * @param model is the model created from the MySQL info
+	 *
+	 */
 	@PostMapping(value = "/save")
 	public String savePlayer(@Valid Player player,
-			BindingResult result, ModelMap model, RedirectAttributes redirectAttributes) {
+			BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
 			return "addplayer";
 	}
@@ -43,35 +70,70 @@ public class PlayerController {
 		return "redirect:/viewplayers";		
 	}
 	
+	
+	/**
+	 * The ModelAndView method is what coordinates the collected data
+	 * and the visual representation of said data.
+	 * The viewplayers method retrieves all the players from the database
+	 * and displays them in a table format in the viewplayers.jsp.
+	 * @return
+	 */
 	@GetMapping(value = "/viewplayers")
 	public ModelAndView viewplayers() {
 		List<Player> list = playerDao.getAllPlayers();
 		return new ModelAndView("viewplayers","list",list);
 	}
 	
+	
+	/**
+	 * The edit method matches the editplayer.jsp to the 
+	 * selected player to be edited by way of id.
+	 * @param id is the id of the player selected to be edited
+	 * @param model is the model made of the MySQL data
+	 * @return
+	 */
 	@RequestMapping(value = "/edit/{id}")
 	public String edit(@PathVariable int id,ModelMap model) {
 		
 		Player player = playerDao.getPlayerById(id);		
 		model.addAttribute("player", player);
-		System.out.println(player.getId());
 		return "editplayer";		
 	}
 	
+	
+	/**
+	 * The editsave method is accessed when the user presses "update" in
+	 * the editplayer.jsp.  
+	 * @param player is the player selected to be updated
+	 * @returns a new view based on the changes just made.
+	 */
 	@PostMapping(value = "/editsave")
 	public ModelAndView editsave(@ModelAttribute("player") Player player) {	
 				
-		System.out.println("id is "+player.getId());
 		playerDao.update(player);		
 		return new ModelAndView("redirect:/viewplayers");
 	}	
 	
+	
+	/**
+	 * The delete method deletes a player from the database
+	 * based on which id is selected
+	 * @param id is the id of the player selected to be deleted.
+	 * 
+	 */
 	@GetMapping(value = "/delete/{id}")
 	public ModelAndView delete(@PathVariable int id) {
 		playerDao.delete(id);
 		return new ModelAndView("redirect:/viewplayers");
 	}
 	
+	
+	/**
+	 * 
+	 * initializePositions is a method that adds all 
+	 * possible positions.  They can be accessed
+	 * within the editplayer.jsp. 
+	 */
 	@ModelAttribute("positions")
 	public List<String> initializePositions() {
 		
@@ -84,6 +146,12 @@ public class PlayerController {
 		return positions;
 	}
 	
+	/**
+	 * initializeTeams is a method that adds all possible 
+	 * NFL football teams.  They can be accessed
+	 * within the editplayer.jsp.
+	 * 
+	 */
 	@ModelAttribute("teams")
 	public List<String> initializeTeams() {
 

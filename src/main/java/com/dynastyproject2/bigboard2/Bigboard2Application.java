@@ -5,6 +5,14 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+
+/**
+ * 
+ * @author Ryan Jones
+ * March 23rd, 2022
+ * 
+ *This is the class from which the application is ran.
+ */
 @SpringBootApplication(exclude = {ErrorMvcAutoConfiguration.class})
 @EnableJpaAuditing
 public class Bigboard2Application {

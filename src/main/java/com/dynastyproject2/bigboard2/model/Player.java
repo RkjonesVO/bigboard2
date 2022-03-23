@@ -13,6 +13,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * The Player class serves as a model for each individual Player object. 
+ *
+ */
 @Data
 @Entity
 @AllArgsConstructor
@@ -22,27 +26,47 @@ public class Player implements Serializable {
 	
 	private static final long serialVersionUID = 1L;	
 	
+	
+	/**
+	 * The id of each player.  Note that it auto-increments.
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;	
 	
+	/**
+	 * The position of the player (QB, RB, WR, TE, or ATH)
+	 */
 	@NotNull
 	@Column
 	private String position;
 	
+	/**
+	 * The name of the player
+	 */
 	@NotNull
 	@Column
 	private String name;
 	
+	
+	/**
+	 * The team of the player.
+	 */
 	@NotNull
 	@Column
 	private String team;
 	
-	
+	/**
+	 * The points scored in 2021 for the player
+	 */
 	@NotNull
 	@Range(min=0, max=600)
 	private int points;
 
+	/**
+	 * Below are all of the getters and setters for the different Player fields.
+	 * 
+	 */
 	public int getId() {
 		return id;
 	}
