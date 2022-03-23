@@ -1,0 +1,5 @@
+com\dynastyproject2\bigboard2\repository\PlayerRepository.class
+com\dynastyproject2\bigboard2\controller\PlayerEnrollmentController.class
+com\dynastyproject2\bigboard2\model\PlayerDTO.class
+com\dynastyproject2\bigboard2\dao\PlayerDAO.class
+com\dynastyproject2\bigboard2\Bigboard2Application.class
