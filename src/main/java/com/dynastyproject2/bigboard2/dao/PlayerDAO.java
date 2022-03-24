@@ -7,6 +7,7 @@ import java.util.List;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
@@ -42,6 +43,7 @@ public class PlayerDAO {
 	 * queries.
 	 */
 	@Autowired
+	@Bean
 	public void setDataSource(DataSource dataSource) {
 		template = new JdbcTemplate(dataSource);
 	}	
