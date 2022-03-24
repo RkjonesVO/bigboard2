@@ -12,7 +12,7 @@
 <table id="t02"  cellpadding="2">
 <tr>
 <th>
-<a  href="/bigboard2/addplayer"><h2>Add New Player</h2></a>
+<a  href="/addplayer"><h2>Add New Player</h2></a>
 
 </th>
 
@@ -33,8 +33,8 @@
    <td>${player.name}</td>  
    <td>${player.team}</td> 
    <td>${player.points}</td>  
-   <td><a href="/bigboard2/edit/${player.id}">Edit</a></td>  
-   <td><a href="/bigboard2/delete/${player.id}">Delete</a></td>  
+   <td><a href="/edit/${player.id}">Edit</a></td>  
+   <td><a href="/delete/${player.id}">Delete</a></td>  
    </tr>  
    </c:forEach> 
    
