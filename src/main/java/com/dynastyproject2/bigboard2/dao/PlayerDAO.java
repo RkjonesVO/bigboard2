@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.sql.DataSource;
@@ -24,7 +25,7 @@ import com.dynastyproject2.bigboard2.model.Player;
  * MySQL database, based on which method is called from the Controller class.
  *
  */
-
+@Repository
 @Service
 public class PlayerDAO {
 	
