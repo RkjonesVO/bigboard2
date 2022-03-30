@@ -16,9 +16,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
  * 
  *This is the class from which the application is ran.
  */
-@EnableAutoConfiguration(exclude = {HibernateJpaAutoConfiguration.class,ErrorMvcAutoConfiguration.class,DataSourceAutoConfiguration.class})
-@SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
-@EnableJpaAuditing
+// @EnableAutoConfiguration(exclude = {HibernateJpaAutoConfiguration.class,ErrorMvcAutoConfiguration.class,DataSourceAutoConfiguration.class})
+// @SpringBootApplication(exclude = ErrorMvcAutoConfiguration.class)
+// @EnableJpaAuditing
+@SpringBootApplication
 public class Bigboard2Application {
 
 	public static void main(String[] args) {

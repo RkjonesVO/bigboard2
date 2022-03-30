@@ -136,7 +136,7 @@ public class PlayerDAO {
 	 * in the viewplayers.jsp view 
 	 */
 	public void update(Player player) {
-		String sql="update Player set position='"+player.getPosition()+"',name='"+player.getName()+"',team='"+player.getTeam()+"',points='"+player.getPoints()+"' where ID ="+player.getId()+"";
+		String sql="update player set position='"+player.getPosition()+"',name='"+player.getName()+"',team='"+player.getTeam()+"',points='"+player.getPoints()+"' where ID ="+player.getId()+"";
 		template.update(sql);
 		System.out.println(sql);
 	}	
@@ -147,7 +147,7 @@ public class PlayerDAO {
 	 */
 	public void delete(int id) {
 	
-		String sql="delete from Player where ID="+id+"";
+		String sql="delete from player where ID="+id+"";
 		template.update(sql);		
 	}
 	
